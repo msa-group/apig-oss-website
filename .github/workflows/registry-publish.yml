@@ -25,7 +25,7 @@ jobs:
           npm i @serverless-devs/s@v3 -g
       - name: s registry login
         run: |
-          s registry login --token ${{ secrets.alibaba_registry_v3_publish_token }}
+          s registry login --token ${{ secrets.ALIBABA_REGISTRY_V3_PUBLISH_TOKEN }}
       - name: release prod
         run: |
           s registry publish
