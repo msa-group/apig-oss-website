@@ -1,0 +1,18 @@
+Description: 基于云原生API网关和阿里云OSS实现静态网站托管
+icon: https://higress.io/img/higress_logo_small.png
+Version: 0.0.5
+Keywords:
+- oss
+- static-website
+Name: static-website-oss
+Service:
+  函数计算:
+    Authorities:
+      - AliyunFCFullAccess
+    Description: RAG 应用中业务逻辑执行用到的计算资源。
+Parameters:
+  type: object
+  properties:
+    functionName:
+      title: 函数名
+      type: string
