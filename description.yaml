@@ -1,9 +1,8 @@
 Description: 基于云原生API网关和阿里云OSS实现静态网站托管
-icon: https://higress.io/img/higress_logo_small.png
 Version: 0.0.6
 Tags:
 - oss
-- static-website
+- web
 Name: static-website-oss
 Service:
   函数计算:
@@ -13,6 +12,7 @@ Service:
 Parameters:
   type: object
   properties:
-    functionName:
-      title: 函数名
-      type: string
+    Icon: https://higress.io/img/higress_logo_small.png
+    
+
+    
