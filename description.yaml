@@ -1,7 +1,7 @@
 Description: 基于云原生API网关和阿里云OSS实现静态网站托管
 icon: https://higress.io/img/higress_logo_small.png
 Version: 0.0.6
-Keywords:
+Tags:
 - oss
 - static-website
 Name: static-website-oss
