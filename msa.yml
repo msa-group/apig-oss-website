@@ -19,25 +19,25 @@ Parameters:
 
 Composer:
   OssService:
-    Template: apig.service.yml
+    Component: apig.service
     Parameters:
       Port: 443
       AddressesName: {{Parameters.OssAddress}}
       Name: {{Subfix(Parameters.Name)}}
 
   RouteApi:
-    Template: apig.http.api.yml
+    Component: apig.http.api
     Parameters:
-      ApiName: {{Subfix(Join(Parameters.Name, 'http'))}}
+      ApiName: {{Subfix(Join([Parameters.Name, 'http')])}}
 
   OssWebsiteRoute:
     DependsOn:
       - OssService
       - RouteApi
-    Template: apig.route.yml
+    Component: apig.route
     Operation:
       ApiId: {{RosOutput(RouteApi, "HttpApiId")}}
-      Name: {{Join(Parameters.Name, 'index')}}
+      Name: {{Join([Parameters.Name, 'index'])}}
       Path: 'Prefix /'
       Scene: SingleService
       Services:
@@ -45,12 +45,12 @@ Composer:
           Protocol: HTTP
           Weight: 100
     Parameters:
-      HttpApiName: {{Subfix(Join(Parameters.Name, 'api'))}}
-      RouteName: {{Join(Parameters.Name, 'index')}}
+      HttpApiName: {{Subfix(Join([Parameters.Name, 'api')])}}
+      RouteName: {{Join([Parameters.Name, 'index'])}}
 
   HttpRewritePolicy:
     DependsOn: OssWebsiteRoute
-    Template: apig.router.policy.yml
+    Component: apig.router.policy
     Parameters:
       PolicyClassName: "HttpRewrite"
       PolicyConfig:
