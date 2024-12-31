@@ -21,11 +21,6 @@ Composer:
   OssService:
     Template: apig.service.yml
     Parameters:
-<<<<<<< HEAD
-      Port: 80
-      AddressesName: {{Join([Parameters.OssBucket,Parameters.Region,Parameters.Region,'internal.aliyuncs.com'], '-')}}
-      Name: {{Subfix('OssService')}}
-=======
       Port: 443
       AddressesName: {{Parameters.OssAddress}}
       Name: {{Subfix(Parameters.Name)}}
@@ -64,4 +59,3 @@ Composer:
           - HOST: {{Parameters.OssAddress}}
       RouteIds:
         - {{RosOutput(OssWebsiteRoute, "RouteId")}}
->>>>>>> fcbf082 (feat: 🎸 add msa)
