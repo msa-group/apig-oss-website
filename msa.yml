@@ -14,7 +14,9 @@ Parameters:
   OssBucket:
     Type: String
     Default: 'oss-xxx'
-  OssAddress: frontend-gray-cn-shanghai.oss-cn-shanghai-internal.aliyuncs.com
+  OssAddress: 
+    Type: String
+    Default: 'frontend-gray-cn-shanghai.oss-cn-shanghai-internal.aliyuncs.com'
 
 
 Composer:
@@ -28,7 +30,7 @@ Composer:
   RouteApi:
     Component: apig.http.api
     Parameters:
-      ApiName: {{Subfix(Join([Parameters.Name, 'http')])}}
+      ApiName: {{Subfix(Join([Parameters.Name, 'http']))}}
 
   OssWebsiteRoute:
     DependsOn:
@@ -45,7 +47,7 @@ Composer:
           Protocol: HTTP
           Weight: 100
     Parameters:
-      HttpApiName: {{Subfix(Join([Parameters.Name, 'api')])}}
+      HttpApiName: {{Subfix(Join([Parameters.Name, 'api']))}}
       RouteName: {{Join([Parameters.Name, 'index'])}}
 
   HttpRewritePolicy:
