@@ -5,10 +5,9 @@ Tags:
 - web
 Name: static-website-oss
 Service:
-  函数计算:
+  云原生API网关:
     Authorities:
-      - AliyunFCFullAccess
-    Description: RAG 应用中业务逻辑执行用到的计算资源。
+      - AliyunAPIGFullAccess
 Parameters:
   type: object
   properties:

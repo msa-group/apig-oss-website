@@ -27,6 +27,7 @@ Composer:
     Component: apig.service
     Parameters:
       Port: 443
+			isOssWebsite: true
       AddressesName: {{Parameters.OssAddress}}
       Name: {{Subfix(Parameters.Name)}}
 
@@ -42,16 +43,13 @@ Composer:
     Component: apig.route
     Operation:
       ApiId: {{RosOutput(RouteApi, "HttpApiId")}}
-      Name: {{Join([Parameters.Name, 'index'])}}
+      Name: {{Join([Parameters.Name, 'page'])}}
       Path: 'Prefix /'
       Scene: SingleService
       Services:
         - ServiceId: {{RosOutput(OssService, "ServiceId")}}
           Protocol: HTTP
           Weight: 100
-    Parameters:
-      HttpApiName: {{Subfix(Join([Parameters.Name, 'api']))}}
-      RouteName: {{Join([Parameters.Name, 'index'])}}
 
   HttpRewritePolicy:
     DependsOn: OssWebsiteRoute
