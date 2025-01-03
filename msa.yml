@@ -11,12 +11,6 @@ Parameters:
   Name:
     Type: String
     Default: 'oss-website'
-  OssBucket:
-    Type: String
-    Default: 'oss-xxx'
-  OssAddress: 
-    Type: String
-    Default: 'frontend-gray-cn-shanghai.oss-cn-shanghai-internal.aliyuncs.com'
   OssBucketName:
     Type: String
     Default: 'frontend-gray-cn-shanghai'
@@ -27,8 +21,8 @@ Composer:
     Component: apig.service
     Parameters:
       Port: 443
-			isOssWebsite: true
-      AddressesName: {{Parameters.OssAddress}}
+      IsOSSWebsite: true
+      AddressesName: {{OSSAddress(Parameters.OssBucketName, Parameters.Region)}}
       Name: {{Subfix(Parameters.Name)}}
 
   RouteApi:
@@ -59,7 +53,7 @@ Composer:
       PolicyConfig:
         Fn::Sub:
           - '{"pathType":"Prefix","host":"${HOST}","enable":true}'
-          - HOST: {{Parameters.OssAddress}}
+          - HOST: {{OSSAddress(Parameters.OssBucketName, Parameters.Region)}}
       RouteIds:
         - {{RosOutput(OssWebsiteRoute, "RouteId")}}
 

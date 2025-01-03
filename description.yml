@@ -1,11 +1,11 @@
 Description: 基于云原生API网关和阿里云OSS实现静态网站托管
-Version: 0.0.12
+Version: 0.0.13
 Tags:
 - oss
 - web
 Name: static-website-oss
 Service:
-  云原生API网关:
+  API网关:
     Authorities:
       - AliyunAPIGFullAccess
 Parameters:
