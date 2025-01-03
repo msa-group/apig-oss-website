@@ -1,5 +1,5 @@
 Description: 基于云原生API网关和阿里云OSS实现静态网站托管
-Version: 0.0.16
+Version: 0.0.17
 Tags:
 - oss
 - web
