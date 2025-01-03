@@ -20,6 +20,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y git make jq curl wget
+      - name: lower case readme
+        run: |
+          mv README.md readme.md
       - name: generate publish.yaml
         run: |
           npx msa-tool publish
