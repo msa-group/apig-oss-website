@@ -17,6 +17,9 @@ Parameters:
   OssAddress: 
     Type: String
     Default: 'frontend-gray-cn-shanghai.oss-cn-shanghai-internal.aliyuncs.com'
+  OssBucketName:
+    Type: String
+    Default: 'frontend-gray-cn-shanghai'
 
 
 Composer:
@@ -59,5 +62,14 @@ Composer:
         Fn::Sub:
           - '{"pathType":"Prefix","host":"${HOST}","enable":true}'
           - HOST: {{Parameters.OssAddress}}
+      RouteIds:
+        - {{RosOutput(OssWebsiteRoute, "RouteId")}}
+
+  HttpModifyResHeaderPolicy:
+    DependsOn: OssWebsiteRoute
+    Component: apig.router.policy
+    Parameters:
+      PolicyClassName: "HeaderModify"
+      PolicyConfig: '{"enable":true,"headerOpItems": [{"directionType":"Response","opType":"Update","key":"Content-Disposition","value":"inline"}]}'
       RouteIds:
         - {{RosOutput(OssWebsiteRoute, "RouteId")}}
