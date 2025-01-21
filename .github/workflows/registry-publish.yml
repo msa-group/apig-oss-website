@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  BAILIAN_APP_ID: ${{ secrets.BAILIAN_APP_ID }} 
+  BAILIAN_API_KEY: ${{ secrets.BAILIAN_API_KEY }}
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -20,9 +24,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y git make jq curl wget
-      - name: lower case readme
+      - name: generate README
         run: |
-          mv README.md readme.md
+          npx msa-tool generate
+      - name: List files
+        run: |
+          ls -la
       - name: generate publish.yaml
         run: |
           npx msa-tool publish

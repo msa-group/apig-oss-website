@@ -1,10 +1,10 @@
 Parameters:
   GatewayId:
     Type: String
-    Default: 'gw-ctpq9vmm1hko22vleel0'
+    Default: 'gw-cu3nu7um1hkmdff3ecl0'
   EnvironmentId:
     Type: String
-    Default: 'env-ctpqafmm1hkrb7pvq57g'
+    Default: 'env-cu3nuoum1hkmdff3ees0'
   Region:
     Type: String
     Default: 'cn-shanghai'
@@ -50,10 +50,7 @@ Composer:
     Component: apig.router.policy
     Parameters:
       PolicyClassName: "HttpRewrite"
-      PolicyConfig:
-        Fn::Sub:
-          - '{"pathType":"Prefix","host":"${HOST}","enable":true}'
-          - HOST: {{OSSAddress(Parameters.OssBucketName, Parameters.Region)}}
+      PolicyConfig: '{"pathType":"Prefix","host":"{{OSSAddress(Parameters.OssBucketName, Parameters.Region)}}","enable":true}'
       RouteIds:
         - {{RosOutput(OssWebsiteRoute, "RouteId")}}
 
@@ -65,3 +62,18 @@ Composer:
       PolicyConfig: '{"enable":true,"headerOpItems": [{"directionType":"Response","opType":"Update","key":"Content-Disposition","value":"inline"}]}'
       RouteIds:
         - {{RosOutput(OssWebsiteRoute, "RouteId")}}
+
+  CustomResponsePlugin:
+    DependsOn: OssWebsiteRoute
+    Component: apig.router.plugin
+    Parameters:
+      RouteIds: 
+        - {{RosOutput(OssWebsiteRoute, "RouteId")}}
+      PluginClassId: pls-cqebrgh4ckt6ppatmprc
+      PluginConfig: |
+        enable_on_status:
+          - 404
+        status_code: 404
+        headers:
+          - Content-Type=text/html; charset=utf-8
+        body: "<div>404</div>"
