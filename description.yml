@@ -17,7 +17,7 @@ Project:
   architecture: |
     ![](https://computenest-service-deploy-document-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/quickstart-dify/1.png)
   deploy: |
-    假设有一个Web应用，对外域名为example.com，静态页面由OSS托管，并通过云原生API网关代理静态页面以及后端服务。架构示意图如下：
+    假设有一个Web应用，对外域名为example.com，静态页面由OSS托管，并通过云原生API网关代理静态页面以及后端服务。架构示意图如下： 
 
     ![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8070347271/CAEQTxiBgMDKn6nijBkiIDdkMzljMDEwYThjZDQyYWViMjFmYjUyYmQ5MDJjY2Mx4468809_20240628141726.469.svg)
 
